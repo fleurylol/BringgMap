@@ -566,7 +566,6 @@ function initMap() {
     zoom: 15,
   });
 
-  // Define a function to determine marker color based on the number of times
   function getMarkerColor(count) {
     if (count >= 15) {
       return {
