@@ -568,10 +568,15 @@ function initMap() {
 
   // Define a function to determine marker color based on the number of times
   function getMarkerColor(count) {
-    if (count >= 10) {
+    if (count >= 15) {
+      return {
+        url: "http://maps.google.com/mapfiles/ms/icons/pink-dot.png",
+        size: new google.maps.Size(50, 50),
+      };
+    } else if (count >= 10) {
       return {
         url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-        size: new google.maps.Size(50, 50),
+        size: new google.maps.Size(45, 45),
       };
     } else if (count >= 5) {
       return {
