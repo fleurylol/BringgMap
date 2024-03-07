@@ -1,4 +1,4 @@
-const addresses = [
+const janData = [
   '6640 East State Street, Rockford, IL, USA: 1 times',
   '5050 East State Street, Rockford, IL, USA: 11 times',
   '6930 Argus Drive, Rockford, IL, USA: 2 times',
@@ -517,76 +517,4 @@ const addresses = [
   '2124 Spring Brook Avenue, Rockford, IL, USA: 1 times',
 ];
 
-const apiKey = 'AIzaSyAvzM-6pq1eLVZ0RrQbIwymMFjsvAirzfA';
-
-function initMap() {
-  // Initialize the map
-  const map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: 42.27088, lng: -88.979198 },
-    zoom: 15,
-  });
-
-  function getMarkerColor(count) {
-    if (count >= 15) {
-      return {
-        url: 'http://maps.google.com/mapfiles/ms/icons/pink-dot.png',
-        size: new google.maps.Size(50, 50),
-      };
-    } else if (count >= 10) {
-      return {
-        url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-        size: new google.maps.Size(45, 45),
-      };
-    } else if (count >= 5) {
-      return {
-        url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-        size: new google.maps.Size(40, 40),
-      };
-    } else if (count >= 2) {
-      return {
-        url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
-        size: new google.maps.Size(30, 30),
-      };
-    } else {
-      return {
-        url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-        size: new google.maps.Size(20, 20),
-      };
-    }
-  }
-
-  // Geocode and display each address on the map
-  addresses.forEach((address) => {
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: address }, (results, status) => {
-      if (status === 'OK') {
-        const matches = address.match(/(\d+) times/);
-        const count = matches ? parseInt(matches[1]) : 0;
-
-        const markerColor = getMarkerColor(count);
-
-        const marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location,
-          title: address,
-          icon: {
-            url: markerColor.url,
-            scaledSize: markerColor.size,
-          },
-        });
-
-        marker.addListener('click', () => {
-          // Show an info window with the address and count when the marker is clicked
-          const infoWindow = new google.maps.InfoWindow({
-            content: `${address}`,
-          });
-          infoWindow.open(map, marker);
-        });
-      } else {
-        console.error(
-          'Geocode was not successful for the following reason: ' + status
-        );
-      }
-    });
-  });
-}
+export default janData;
